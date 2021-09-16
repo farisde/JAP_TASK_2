@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace JAP_TASK_2
 {
     [TestFixture]
-    class MovieRatingTests
+    class AverageRatingTests
     {
         private DataContext _context;
         private IMovieService _movieService;
@@ -89,7 +89,7 @@ namespace JAP_TASK_2
         }
 
         [Test]
-        public async Task AddNewRating_InputRatingInfo_CorrectRatingCalculation()
+        public async Task AverageRating_InputRatingInfo_CorrectRatingCalculation()
         {
             var newRating = new AddRatingDto
             {
@@ -109,7 +109,7 @@ namespace JAP_TASK_2
         }
 
         [Test]
-        public async Task AddNewRating_InputRatingInfo_CorrectRatingWithOneValue()
+        public async Task AverageRating_InputRatingInfo_CorrectRatingWithOneValue()
         {
             var newRating = new AddRatingDto
             {
@@ -129,7 +129,7 @@ namespace JAP_TASK_2
         }
 
         [Test]
-        public async Task AddNewRating_InputRatingInfo_InvalidRatingRange()
+        public async Task AverageRating_InputRatingInfo_InvalidRatingRange()
         {
             var newRating = new AddRatingDto
             {

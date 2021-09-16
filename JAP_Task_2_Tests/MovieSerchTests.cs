@@ -49,7 +49,12 @@ namespace JAP_TASK_2
                 ReleaseDate = new DateTime(1997, 5, 25),
                 CoverImage = "https://kbimages1-a.akamaihd.net/538b1473-6d45-47f4-b16e-32a0a6ba7f9a/1200/1200/False/star-wars-episode-iv-a-new-hope-3.jpg",
                 Rating = 3,
-                IsMovie = true
+                IsMovie = true,
+                Cast = new List<CastMember>
+                {
+                    new CastMember { Id = 1, Name = "Carrie Fisher" },
+                    new CastMember { Id = 2, Name = "Mark Hamil" }
+                }
             };
 
             var m2 = new Movie
@@ -216,6 +221,23 @@ namespace JAP_TASK_2
             {
                 Assert.That(response.Success, Is.True);
                 Assert.That(response.Data.Count, Is.EqualTo(2));
+            });
+        }
+
+        [Test]
+        public async Task MovieShowSearch_InputSearchQuery_ContentWithCastMemberMatch()
+        {
+            var query = new SendSearchResultsDto
+            {
+                SearchPhrase = "Hamil"
+            };
+
+            var response = await _movieService.GetSearchResults(query);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(response.Success, Is.True);
+                Assert.That(response.Data.Count, Is.EqualTo(1));
             });
         }
     }

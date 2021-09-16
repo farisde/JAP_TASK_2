@@ -39,6 +39,14 @@ namespace JAP_TASK_2.Services.MovieService
                 .Include(m => m.Cast)
                 .Include(m => m.RatingList)
                 .FirstOrDefaultAsync(m => m.Id == newRating.RatedMovieId);
+
+            if (ratedMovie == null)
+            {
+                response.Success = false;
+                response.Message = "Selected movie ID doesn't exist.";
+                return response;
+            }
+
             var rating = new Rating
             {
                 Value = newRating.Value,
